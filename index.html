@@ -28,8 +28,13 @@
       </a-entity>
       <a-collada-model src="#mine-thumb"></a-collada-model>
       <a-dodecahedron color="#FF926B" radius="5" scale="0.1 0.1 0.1"></a-dodecahedron>
+      <!-- Basic ring. -->
+      <a-ring color="teal" radius-inner="1" radius-outer="2" scale=".5 .5 .5"></a-ring>
       <a-curvedimage src="#city-thumb" height="3.0" radius="5.7" theta-length="72"
-                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
+                 rotation="0 180 0" scale="0.8 0.8 0.8"></a-curvedimage>
+      <!-- Blue point light, 5 meters in the air. -->
+      <!-- <a-light type="point" color="blue" position="0 5 0"></a-light> -->
+      <a-torus-knot color="#B84A39" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot>
     </a-scene>
   </body>
 </html>
