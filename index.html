@@ -4,8 +4,28 @@
     <title>Hello, WebVR! - A-Frame</title>
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script type="text/javascript">
+    AFRAME.registerPrimitive('a-ocean', {
+      // Attaches the `ocean` component by default.
+      // Defaults the ocean to be parallel to the ground.
+      defaultComponents: {
+      ocean: {},
+      rotation: {x: -90, y: 0, z: 0}
+      },
+      // Maps HTML attributes to the `ocean` component's properties.
+      mappings: {
+      width: 'ocean.width',
+      depth: 'ocean.depth',
+      density: 'ocean.density',
+      color: 'ocean.color',
+      opacity: 'ocean.opacity'
+      }
+      });
+    </script>
   </head>
   <body>
+
     <a-scene>
       <a-assets>
         <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
@@ -26,15 +46,17 @@
           <a-cursor></a-cursor>
         </a-camera>
       </a-entity>
-      <a-collada-model src="#mine-thumb"></a-collada-model>
       <a-dodecahedron color="#FF926B" radius="5" scale="0.1 0.1 0.1"></a-dodecahedron>
       <!-- Basic ring. -->
       <a-ring color="teal" radius-inner="1" radius-outer="2" scale=".5 .5 .5"></a-ring>
+      <!-- document.querySelector('a-ring').setAttribute(dynamic-body) -->
       <a-curvedimage src="#city-thumb" height="3.0" radius="5.7" theta-length="72"
                  rotation="0 180 0" scale="0.8 0.8 0.8"></a-curvedimage>
       <!-- Blue point light, 5 meters in the air. -->
       <!-- <a-light type="point" color="blue" position="0 5 0"></a-light> -->
-      <a-torus-knot color="#B84A39" arc="180" p="2" q="7" radius="5" radius-tubular="0.1"></a-torus-knot>
+      <a-torus-knot color="#B84A39" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" dynamic-body></a-torus-knot>
+      <a-ocean color="aqua" depth="100" width="100"><a-ocean/>
     </a-scene>
   </body>
+  <script src="components/ball.js" type="text/javascript"/>
 </html>
