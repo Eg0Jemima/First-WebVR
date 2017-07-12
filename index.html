@@ -5,57 +5,71 @@
     <meta name="description" content="Hello, WebVR! - A-Frame">
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
-    <script type="text/javascript">
-    AFRAME.registerPrimitive('a-ocean', {
-      // Attaches the `ocean` component by default.
-      // Defaults the ocean to be parallel to the ground.
-      defaultComponents: {
-      ocean: {},
-      rotation: {x: -90, y: 0, z: 0}
-      },
-      // Maps HTML attributes to the `ocean` component's properties.
-      mappings: {
-      width: 'ocean.width',
-      depth: 'ocean.depth',
-      density: 'ocean.density',
-      color: 'ocean.color',
-      opacity: 'ocean.opacity'
-      }
-      });
-    </script>
+
   </head>
   <body>
-
+    <script type="text/javascript">
+        AFRAME.registerPrimitive('a-ocean', {
+            defaultComponents: {
+            geometry: {
+                primitive: 'tetrahedron',
+                    height: 1.5,
+                    depth: 0.2,
+                    width: 3.5
+                },
+                material: {
+                    opacity: 1.0,
+                    transparent: false,
+                    side: 'Double',
+                    color: '#8450ff'
+                },
+                position: {
+                    x: 0,
+                    y: 0,
+                    z: -5
+                },
+            },
+            mappings: {
+                height: 'geometry.height',
+                width: 'geometry.width',
+                depth: 'geometry.depth',
+                color: 'material.color',
+                opacity: 'material.opacity',
+                position: 'position'
+            }
+        });
+    </script>
     <a-scene>
-      <a-assets>
-        <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
-        <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
-        <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
-        <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
-        <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
-        <img id="mine" crossorigin="anonymous" src="https://i1.wp.com/blog.rebrandly.com/wp-content/uploads/2016/10/URL-ShortENER-APIs.png?fit=650%2C325&ssl=1">
-      </a-assets>
-      <a-box position="-3 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="3 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-circle position="-1 1 -3"rotation="-90 0 0" color="orange"></a-circle>
-      <a-sky src="#cubes" radius="10"></a-sky>
-      <a-entity position="0 0 5">
+        <a-assets>
+            <img id="city-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-city.jpg">
+            <img id="cubes-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-cubes.jpg">
+            <img id="sechelt-thumb" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/thumb-sechelt.jpg">
+            <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+            <img id="cubes" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+            <img id="mine" crossorigin="anonymous" src="https://i1.wp.com/blog.rebrandly.com/wp-content/uploads/2016/10/URL-ShortENER-APIs.png?fit=650%2C325&ssl=1">
+        </a-assets>
+        <a-box position="-3 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+
+        <a-cylinder position="3 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-circle position="-1 1 -3"rotation="-90 0 0" color="orange"></a-circle>
+        <a-sky src="#cubes" radius="10"></a-sky>
+        <a-entity position="0 0 5">
         <a-camera>
           <a-cursor></a-cursor>
         </a-camera>
-      </a-entity>
-      <a-dodecahedron color="#FF926B" radius="5" scale="0.1 0.1 0.1"></a-dodecahedron>
-      <!-- Basic ring. -->
-      <a-ring color="teal" radius-inner="1" radius-outer="2" scale=".5 .5 .5"></a-ring>
-      <!-- document.querySelector('a-ring').setAttribute(dynamic-body) -->
-      <a-curvedimage src="#city-thumb" height="3.0" radius="5.7" theta-length="72"
+        </a-entity>
+        <a-dodecahedron color="#FF926B" radius="5" scale="0.1 0.1 0.1"></a-dodecahedron>
+        <!-- document.querySelector('a-ring').setAttribute(dynamic-body) -->
+        <a-curvedimage src="#city-thumb" height="3.0" radius="5.7" theta-length="72"
                  rotation="0 180 0" scale="0.8 0.8 0.8"></a-curvedimage>
-      <!-- Blue point light, 5 meters in the air. -->
-      <!-- <a-light type="point" color="blue" position="0 5 0"></a-light> -->
-      <a-torus-knot color="#B84A39" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" dynamic-body></a-torus-knot>
-      <a-ocean color="aqua" depth="100" width="100"><a-ocean/>
+        <!-- <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere> 
+        Basic ring.
+        <a-ring color="teal" radius-inner="1" radius-outer="2" scale=".5 .5 .5"></a-ring>
+        Blue point light, 5 meters in the air.
+        <a-light type="point" color="blue" position="0 5 0"></a-light> -->
+        <a-torus-knot color="#B84A39" arc="180" p="2" q="7" radius="5" radius-tubular="0.1" dynamic-body></a-torus-knot>
+        <a-ocean depth="100" width="100" position="0 0 5"><a-ocean/>
     </a-scene>
   </body>
   <script src="components/ball.js" type="text/javascript"/>
